@@ -1,0 +1,148 @@
+-- ========================
+-- TABLA: CIUDAD
+-- ========================
+CREATE TABLE Ciudad (
+  ciudad_id SERIAL PRIMARY KEY,
+  nombre_ciudad VARCHAR(100) NOT NULL,
+  codigo_postal VARCHAR(10) NOT NULL
+);
+
+-- ========================
+-- TABLA: USUARIO
+-- ========================
+CREATE TABLE Usuario (
+  usuario_id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  tipo_usuario VARCHAR(100) NOT NULL,
+  condicion_especial VARCHAR(100),
+  ciudad_id INT REFERENCES Ciudad(ciudad_id)
+);
+
+-- ========================
+-- TABLA: EMPLEADO
+-- ========================
+CREATE TABLE Empleado (
+  empleado_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  cargo VARCHAR(100) NOT NULL,
+  departamento VARCHAR(50) NOT NULL
+);
+
+-- ========================
+-- TABLA: SERVICIO
+-- ========================
+CREATE TABLE Servicio (
+  servicio_id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  estado VARCHAR(100) DEFAULT 'activo'
+);
+
+-- ========================
+-- TABLA: TURNO
+-- ========================
+CREATE TABLE Turno (
+  turno_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  servicio_id INT REFERENCES Servicio(servicio_id),
+  empleado_id INT REFERENCES Empleado(empleado_id),
+  fecha DATE NOT NULL,
+  hora_inicio TIME NOT NULL,
+  hora_fin TIME NOT NULL,
+  estado VARCHAR(100) DEFAULT 'pendiente'
+);
+
+-- ========================
+-- TABLA: MEDIO (Correo, SMS, Teléfono, etc.)
+-- ========================
+CREATE TABLE Medio (
+  medio_id SERIAL PRIMARY KEY,
+  tipo VARCHAR(100) NOT NULL
+);
+
+-- ========================
+-- TABLA: NOTIFICACION
+-- ========================
+CREATE TABLE Notificacion (
+  notificacion_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  medio_id INT REFERENCES Medio(medio_id),
+  mensaje TEXT,
+  fecha_envio TIMESTAMP DEFAULT NOW(),
+  estado VARCHAR(100) DEFAULT 'enviado'
+);
+-- ========================
+-- TABLA: CIUDAD
+-- ========================
+CREATE TABLE Ciudad (
+  ciudad_id SERIAL PRIMARY KEY,
+  nombre_ciudad VARCHAR(100) NOT NULL,
+  codigo_postal VARCHAR(100) NOT NULL
+);
+
+-- ========================
+-- TABLA: USUARIO
+-- ========================
+CREATE TABLE Usuario (
+  usuario_id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  tipo_usuario VARCHAR(100) NOT NULL,
+  condicion_especial VARCHAR(100),
+  ciudad_id INT REFERENCES Ciudad(ciudad_id)
+);
+
+-- ========================
+-- TABLA: EMPLEADO
+-- ========================
+CREATE TABLE Empleado (
+  empleado_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  cargo VARCHAR(100) NOT NULL,
+  departamento VARCHAR(50) NOT NULL
+);
+
+-- ========================
+-- TABLA: SERVICIO
+-- ========================
+CREATE TABLE Servicio (
+  servicio_id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  estado VARCHAR(100) DEFAULT 'activo'
+);
+
+-- ========================
+-- TABLA: TURNO
+-- ========================
+CREATE TABLE Turno (
+  turno_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  servicio_id INT REFERENCES Servicio(servicio_id),
+  empleado_id INT REFERENCES Empleado(empleado_id),
+  fecha DATE NOT NULL,
+  hora_inicio TIME NOT NULL,
+  hora_fin TIME NOT NULL,
+  estado VARCHAR(100) DEFAULT 'pendiente'
+);
+
+-- ========================
+-- TABLA: MEDIO 
+-- ========================
+CREATE TABLE Medio (
+  medio_id SERIAL PRIMARY KEY,
+  tipo VARCHAR(100) NOT NULL
+);
+
+-- ========================
+-- TABLA: NOTIFICACION
+-- ========================
+CREATE TABLE Notificacion (
+  notificacion_id SERIAL PRIMARY KEY,
+  usuario_id INT REFERENCES Usuario(usuario_id),
+  medio_id INT REFERENCES Medio(medio_id),
+  mensaje TEXT,
+  fecha_envio TIMESTAMP DEFAULT NOW(),
+  estado VARCHAR(100) DEFAULT 'enviado'
+);

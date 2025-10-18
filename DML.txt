@@ -1,0 +1,105 @@
+-- ===========================================
+-- TABLA: CIUDAD
+-- ===========================================
+INSERT INTO Ciudad (nombre_ciudad, codigo_postal) VALUES
+('Bogotá', '110111'),
+('Medellín', '050021'),
+('Cali', '760001'),
+('Barranquilla', '080001'),
+('Cartagena', '130001'),
+('Bucaramanga', '680001'),
+('Manizales', '170001'),
+('Pereira', '660001'),
+('Cúcuta', '540001'),
+('Villavicencio', '500001');
+
+-- ===========================================
+-- TABLA: USUARIO
+-- ===========================================
+INSERT INTO Usuario (nombre, apellido, tipo_usuario, condicion_especial, ciudad_id) VALUES
+('Laura', 'Gómez', 'cliente', 'ninguna', 1),
+('Carlos', 'Martínez', 'cliente', 'embarazo', 2),
+('Juan', 'Pérez', 'empleado', 'ninguna', 3),
+('María', 'Rodríguez', 'proveedor', 'silla de ruedas', 4),
+('Andrés', 'López', 'empleado', 'ninguna', 5),
+('Sofía', 'Castro', 'cliente', 'adulto mayor', 6),
+('Felipe', 'Ramos', 'empleado', 'ninguna', 7),
+('Camila', 'García', 'cliente', 'ninguna', 8),
+('Ricardo', 'Mendoza', 'proveedor', 'ninguna', 9),
+('Natalia', 'Suárez', 'cliente', 'ninguna', 10);
+
+-- ===========================================
+-- TABLA: EMPLEADO
+-- (solo algunos usuarios son empleados)
+-- ===========================================
+INSERT INTO Empleado (usuario_id, cargo, departamento) VALUES
+(3, 'Asesor', 'Atención al cliente'),
+(5, 'Supervisor', 'Logística'),
+(7, 'Técnico', 'Mantenimiento'),
+(3, 'Recepcionista', 'Front Desk'),
+(5, 'Analista', 'Consultoría'),
+(7, 'Coordinador', 'Despacho'),
+(3, 'Auxiliar', 'Entrega'),
+(5, 'Jefe', 'Atención al cliente'),
+(7, 'Administrador', 'Servicios'),
+(3, 'Asistente', 'Consultoría');
+
+-- ===========================================
+-- TABLA: SERVICIO
+-- ===========================================
+INSERT INTO Servicio (nombre, descripcion, estado) VALUES
+('Despacho de artículos', 'Preparación y envío de productos', 'activo'),
+('Recepción de artículos', 'Recepción de devoluciones o entregas', 'activo'),
+('Atención al cliente', 'Soporte general a usuarios', 'activo'),
+('Consultoría', 'Asesorías personalizadas', 'activo'),
+('Entrega rápida', 'Servicio express de entrega', 'activo'),
+('Gestión de reclamos', 'Atención de quejas y reclamos', 'activo'),
+('Soporte técnico', 'Mantenimiento y reparación de equipos', 'activo'),
+('Orientación general', 'Información de servicios', 'activo'),
+('Registro de proveedores', 'Altas de nuevos proveedores', 'activo'),
+('Facturación', 'Gestión de pagos y facturas', 'activo');
+
+-- ===========================================
+-- TABLA: TURNO
+-- ===========================================
+INSERT INTO Turno (usuario_id, servicio_id, empleado_id, fecha, hora_inicio, hora_fin, estado) VALUES
+(1, 1, 1, '2025-10-17', '08:00', '08:30', 'atendido'),
+(2, 3, 2, '2025-10-17', '09:00', '09:30', 'pendiente'),
+(4, 4, 3, '2025-10-17', '10:00', '10:30', 'pendiente'),
+(6, 5, 4, '2025-10-17', '11:00', '11:30', 'atendido'),
+(8, 2, 5, '2025-10-17', '13:00', '13:30', 'pendiente'),
+(9, 6, 6, '2025-10-17', '14:00', '14:30', 'pendiente'),
+(10, 7, 7, '2025-10-17', '15:00', '15:30', 'atendido'),
+(1, 8, 8, '2025-10-18', '08:00', '08:30', 'pendiente'),
+(2, 9, 9, '2025-10-18', '09:00', '09:30', 'pendiente'),
+(6, 10, 10, '2025-10-18', '10:00', '10:30', 'pendiente');
+
+-- ===========================================
+-- TABLA: MEDIO
+-- ===========================================
+INSERT INTO Medio (tipo) VALUES
+('correo'),
+('teléfono'),
+('sms'),
+('whatsapp'),
+('telegram'),
+('notificación app'),
+('fax'),
+('chat en línea'),
+('mensaje de voz'),
+('correo certificado');
+
+-- ===========================================
+-- TABLA: NOTIFICACION
+-- ===========================================
+INSERT INTO Notificacion (usuario_id, medio_id, mensaje, estado) VALUES
+(1, 1, 'Su turno ha sido confirmado.', 'enviado'),
+(2, 2, 'Su turno fue reprogramado.', 'enviado'),
+(3, 3, 'Tiene un nuevo turno asignado.', 'enviado'),
+(4, 4, 'Su servicio está en proceso.', 'enviado'),
+(5, 5, 'Turno atendido con éxito.', 'enviado'),
+(6, 6, 'Recuerde su turno mañana.', 'pendiente'),
+(7, 7, 'Ha sido notificado de un nuevo servicio.', 'enviado'),
+(8, 8, 'Se ha cerrado su turno.', 'enviado'),
+(9, 9, 'Su turno fue cancelado.', 'enviado'),
+(10, 10, 'Gracias por usar nuestros servicios.', 'enviado');
